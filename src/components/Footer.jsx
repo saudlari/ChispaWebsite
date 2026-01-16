@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import WebsiteCarbonBadge from 'react-websitecarbon-badge';
 
 export default function Footer() {
   return (
@@ -129,10 +130,15 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div className="pt-8 border-t border-gray-200 dark:border-gray-800 text-center">
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
-              © 2024 El Chispa Express. Todos los derechos reservados.
-            </p>
+          <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-slate-500 dark:text-slate-400 text-sm">
+                © 2024 El Chispa Express. Todos los derechos reservados.
+              </p>
+              <div className="flex justify-center">
+                <WebsiteCarbonBadge url="https://chispaexpress.netlify.app/" />
+              </div>
+            </div>
           </div>
         </div>
       </footer>

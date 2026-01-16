@@ -10,14 +10,26 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
     target: 'esnext',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
         },
+        // Optimización: nombres de archivos más cortos para reducir tamaño
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name.endsWith('.css')) {
+            return 'css/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
     chunkSizeWarningLimit: 1000,
+    reportCompressedSize: true,
+    assetsInlineLimit: 4096, 
   },
   
   server: {

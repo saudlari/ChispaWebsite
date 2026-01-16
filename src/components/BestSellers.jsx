@@ -85,6 +85,8 @@ export default function BestSellers() {
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   src={product.image}
+                  loading="lazy"
+                  decoding="async"
                 />
                 {product.badge && (
                   <div className={`absolute top-4 right-4 ${product.badgeColor} font-bold px-3 py-1 rounded-lg`}>

@@ -65,6 +65,8 @@ export default function Menu() {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
                     {item.priceDisplay}
@@ -157,7 +159,9 @@ export default function Menu() {
                   <img 
                     alt={item.name} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                    src={item.image} 
+                    src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="flex justify-between items-center mb-2">
@@ -202,6 +206,8 @@ export default function Menu() {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
                     {item.priceDisplay}
@@ -242,6 +248,8 @@ export default function Menu() {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="p-8 flex-1 flex flex-col justify-between">
@@ -290,6 +298,8 @@ export default function Menu() {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
                     {item.priceDisplay}
@@ -336,6 +346,8 @@ export default function Menu() {
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     src={item.image}
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
                     {item.priceDisplay}
