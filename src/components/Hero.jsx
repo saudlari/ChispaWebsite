@@ -27,6 +27,10 @@ export default function Hero() {
             loading="eager"
             fetchPriority="high"
             decoding="async"
+            crossOrigin="anonymous"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/40 to-transparent"></div>

@@ -1,7 +1,35 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import WebsiteCarbonBadge from 'react-websitecarbon-badge';
+import { WebsiteCarbonBadge } from 'react-websitecarbon-badge';
 
 export default function Footer() {
+  useEffect(() => {
+    const originalError = console.error;
+    const originalWarn = console.warn;
+    
+    console.error = (...args) => {
+      const errorStr = JSON.stringify(args);
+      if (errorStr.includes('Website Carbon') || 
+          errorStr.includes('websitecarbon') || 
+          errorStr.includes('Service temporarily unavailable')) {
+        return; // Suppress Website Carbon API errors
+      }
+      originalError.apply(console, args);
+    };
+
+    console.warn = (...args) => {
+      const warnStr = JSON.stringify(args);
+      if (warnStr.includes('OpaqueResponseBlocking') && warnStr.includes('photo-1550547660')) {
+        return; 
+      }
+      originalWarn.apply(console, args);
+    };
+
+    return () => {
+      console.error = originalError;
+      console.warn = originalWarn;
+    };
+  }, []);
   return (
     <>
       <footer className="bg-zinc-100 dark:bg-zinc-950 pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
@@ -133,7 +161,7 @@ export default function Footer() {
           <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-slate-500 dark:text-slate-400 text-sm">
-                © 2024 El Chispa Express. Todos los derechos reservados.
+                © 2026 El Chispa Express. Todos los derechos reservados.
               </p>
               <div className="flex justify-center">
                 <WebsiteCarbonBadge url="https://chispaexpress.netlify.app/" />
