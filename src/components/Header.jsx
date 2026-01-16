@@ -89,6 +89,7 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-2">
           <Link
             to={ROUTES.order}
+            onClick={closeMobileMenu}
             className="relative p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
             aria-label="Ver carrito"
           >

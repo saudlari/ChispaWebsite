@@ -31,7 +31,7 @@
     --features-bg: white;
     --text-primary: rgb(241 245 249); /* slate-100 */
     --text-muted: rgb(203 213 225); /* slate-300 */
-    --header-bg: rgba(255, 255, 255, 0.8);
+    --header-bg: rgba(255, 255, 255);
     --header-border: rgba(0, 0, 0, 0.1);
     --button-bg: rgba(0, 0, 0, 0.05);
     --button-hover: rgba(0, 0, 0, 0.1);
@@ -51,7 +51,7 @@
     --features-bg: rgb(15 23 42); /* slate-900 */
     --text-primary: rgb(241 245 249); /* slate-100 */
     --text-muted: rgb(203 213 225); /* slate-300 */
-    --header-bg: rgba(0, 0, 0, 0.8);
+    --header-bg: rgba(0, 0, 0, 0.98);
     --header-border: rgba(255, 255, 255, 0.1);
     --button-bg: rgba(255, 255, 255, 0.1);
     --button-hover: rgba(255, 255, 255, 0.2);
