@@ -1,6 +1,6 @@
 export function mapProductToCart(product, category) {
   const categoryPrefixes = {
-    'Hot Dogs': 'hd',
+    'Completos': 'hd',
     'Burgers': 'bg',
     'Sandwiches': 'sw',
     'Chorrillanas': 'ch',
@@ -27,7 +27,7 @@ export function findProductById(productId, category) {
   const { hotDogs, burgers, sides, drinks, combos } = require('../data/products');
   
   const allProducts = [
-    ...hotDogs.map(p => ({ ...p, category: 'Hot Dogs' })),
+    ...hotDogs.map(p => ({ ...p, category: 'Completos' })),
     ...burgers.map(p => ({ ...p, category: 'Burgers' })),
     ...sides.map(p => ({ ...p, category: 'Sides' })),
     ...drinks.map(p => ({ ...p, category: 'Bebidas' })),
@@ -40,7 +40,7 @@ export function findProductById(productId, category) {
     const prefix = productId.substring(0, 2);
     const numId = parseInt(productId.substring(2));
     const categoryMap = {
-      'hd': 'Hot Dogs',
+      'hd': 'Completos',
       'bg': 'Burgers',
       'sd': 'Sides',
       'dr': 'Bebidas',

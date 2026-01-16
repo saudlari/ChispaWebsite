@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { APP_CONFIG } from '../config/constants';
 
 export function useTheme() {
   const [theme, setTheme] = useState('light');
@@ -6,24 +7,27 @@ export function useTheme() {
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('theme');
-    // Por defecto siempre light mode, solo usar dark si está guardado en localStorage
-    const initialTheme = savedTheme || 'light';
     
-    setTheme(initialTheme);
-    const htmlElement = document.documentElement;
-    
-    // Remover clase light si existe (no debería, pero por si acaso)
-    htmlElement.classList.remove('light');
-    
-    // Tailwind solo necesita la clase 'dark' - si no está, es modo light por defecto
-    if (initialTheme === 'dark') {
-      htmlElement.classList.add('dark');
-    } else {
-      htmlElement.classList.remove('dark');
+    try {
+      const savedTheme = localStorage.getItem(APP_CONFIG.localStorage.themeKey);
+      const initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
+      
+      setTheme(initialTheme);
+      const htmlElement = document.documentElement;
+      
+      htmlElement.classList.remove('light');
+      
+      if (initialTheme === 'dark') {
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+      }
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.error('Error loading theme from localStorage:', error);
+      }
+      setTheme('light');
     }
-    
-    localStorage.setItem('theme', initialTheme);
   }, []);
 
   useEffect(() => {
@@ -31,32 +35,25 @@ export function useTheme() {
     
     const htmlElement = document.documentElement;
     
-    console.log('Applying theme:', theme);
-    console.log('HTML classes before:', htmlElement.classList.toString());
-    
-    // Remover clase light si existe
     htmlElement.classList.remove('light');
     
-    // Aplicar/remover clase dark directamente
     if (theme === 'dark') {
       htmlElement.classList.add('dark');
     } else {
       htmlElement.classList.remove('dark');
     }
     
-    console.log('HTML classes after:', htmlElement.classList.toString());
-    console.log('Has dark class?', htmlElement.classList.contains('dark'));
-    console.log('Theme value:', theme);
-    
-    localStorage.setItem('theme', theme);
+    try {
+      localStorage.setItem(APP_CONFIG.localStorage.themeKey, theme);
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        console.error('Error saving theme to localStorage:', error);
+      }
+    }
   }, [theme, mounted]);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prevTheme) => {
-      const newTheme = prevTheme === 'dark' ? 'light' : 'dark';
-      console.log('Toggling theme from', prevTheme, 'to', newTheme);
-      return newTheme;
-    });
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   }, []);
 
   return { theme, toggleTheme, mounted };

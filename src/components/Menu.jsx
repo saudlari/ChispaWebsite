@@ -33,12 +33,11 @@ export default function Menu() {
       </div>
 
       <main className="max-w-7xl mx-auto px-4 py-12">
-        {/* Hot Dogs Section */}
         <div className="menu-category-anchor pt-8" id="hot-dogs">
           <div className="flex items-center gap-4 mb-10">
             <div className="h-1 flex-1 bg-secondary rounded-full"></div>
             <h2 className="font-display text-5xl text-primary flex items-center gap-3">
-              <span className="material-icons text-4xl">hot_tub</span> HOT DOGS
+              <span className="material-icons text-4xl">hot_tub</span> Completos
             </h2>
             <div className="h-1 flex-1 bg-secondary rounded-full"></div>
           </div>

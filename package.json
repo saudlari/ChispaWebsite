@@ -1,13 +1,19 @@
 {
-  "name": "cupuacu.json",
+  "name": "chispita-webpage",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Sitio web de El Chispa Express - Comida rápida con pedidos por WhatsApp",
+  "author": "El Chispa Express",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:analyze": "vite build --mode analyze",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
