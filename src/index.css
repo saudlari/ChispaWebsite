@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: false; 
+}
+
+@theme {
+  --color-primary: #D32F2F;
+  --color-secondary: #FBC02D;
+  --color-accent: #1B5E20;
+  --color-background-light: #FFFFFF;
+  --color-background-dark: #000000;
+  
+  --font-display: "Bangers", cursive;
+  --font-sans: "Poppins", sans-serif;
+  
+  --radius-default: 12px;
+  --radius-xl: 24px;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --p: 211 47 47; /* #D32F2F */
+    --s: 251 192 45; /* #FBC02D */
+    --a: 27 94 32; /* #1B5E20 */
+    
+    --card-bg: rgb(15 23 42); /* slate-900 */
+    --border-color: rgb(30 41 59); /* slate-800 */
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --bg-primary: white;
+    --features-bg: white;
+    --text-primary: rgb(241 245 249); /* slate-100 */
+    --text-muted: rgb(203 213 225); /* slate-300 */
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --header-border: rgba(0, 0, 0, 0.1);
+    --button-bg: rgba(0, 0, 0, 0.05);
+    --button-hover: rgba(0, 0, 0, 0.1);
+  }
+  
+  :root.dark {
+    color-scheme: dark;
+    --p: 211 47 47;
+    --s: 251 192 45;
+    --a: 27 94 32;
+    
+    /* Card colors - same values as light mode */
+    --card-bg: rgb(15 23 42); /* slate-900 */
+    --border-color: rgb(30 41 59); /* slate-800 */
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --bg-primary: black;
+    --features-bg: rgb(15 23 42); /* slate-900 */
+    --text-primary: rgb(241 245 249); /* slate-100 */
+    --text-muted: rgb(203 213 225); /* slate-300 */
+    --header-bg: rgba(0, 0, 0, 0.8);
+    --header-border: rgba(255, 255, 255, 0.1);
+    --button-bg: rgba(255, 255, 255, 0.1);
+    --button-hover: rgba(255, 255, 255, 0.2);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+  color: rgb(30 41 59);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html.dark body {
+  background-color: black;
+  color: rgb(241 245 249);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.hero-pattern {
+  background-color: #D32F2F;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAmeRTP0P8HWRMWhKexIIDj2Gfb5t7SpjWUYNCw2bAi0YptKgIjU-FtaimygBbgYM3kBw3jC1UHhnJ9orp23gFRM_XAX9h6gSkF5U2SRh3zgtgYGNqy0M72js9ZpQ0kh-yE96Bjg9cXuNWeivPlVaHHnLLHdf-w7JmuHhQMtT3gVpfSCbN5QicMtlSzfygDbxXNonwHdhVwO3uEZUnD7_-E5BZY7qLHWH7YYrbl1SqzpFHWWxwh30Q9dOYI0GyYsmr3HHkeU_KhNE0);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
