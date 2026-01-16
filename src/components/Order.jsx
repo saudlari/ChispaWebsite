@@ -1,13 +1,13 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import { getAllProductsForOrder } from '../data/products';
 import { generateWhatsAppUrl } from '../utils/whatsapp';
 import { validateCustomerInfo }  from '../utils/validation';
 import { formatPrice } from '../utils/format';
 import { ERRORS, APP_CONFIG } from '../config/constants';
 import { useToast } from '../hooks/useToast';
 import Toast from './Toast';
+import Menu from './Menu';
 
 export default function Order() {
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal } = useCart();
@@ -23,22 +23,30 @@ export default function Order() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showProducts, setShowProducts] = useState(true);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const prevCartLengthRef = useRef(cart.length);
 
-  // Manejar apertura del drawer desde el header
+  // Mostrar toast cuando se agrega un producto al carrito
+  useEffect(() => {
+    if (cart.length > prevCartLengthRef.current) {
+      showToast('Producto agregado al carrito', 'success');
+      if (window.innerWidth < 1024) {
+        setIsCartOpen(true);
+      }
+    }
+    prevCartLengthRef.current = cart.length;
+  }, [cart.length, showToast]);
+
   useEffect(() => {
     const handleOpenCartDrawer = () => {
       if (window.innerWidth < 1024) {
-        // Pequeño delay para asegurar que el componente esté renderizado
         setTimeout(() => {
           setIsCartOpen(true);
         }, 100);
       }
     };
 
-    // Escuchar evento personalizado
     window.addEventListener('openCartDrawer', handleOpenCartDrawer);
 
-    // Verificar sessionStorage al montar o cuando cambia la ruta
     const checkSessionStorage = () => {
       const shouldOpenCart = sessionStorage.getItem('openCartDrawer');
       if (shouldOpenCart === 'true' && window.innerWidth < 1024) {
@@ -59,18 +67,6 @@ export default function Order() {
       window.removeEventListener('openCartDrawer', handleOpenCartDrawer);
     };
   }, [location.pathname]);
-
-  const allProducts = useMemo(() => getAllProductsForOrder(), []);
-
-  const groupedProducts = useMemo(() => {
-    return allProducts.reduce((acc, product) => {
-      if (!acc[product.category]) {
-        acc[product.category] = [];
-      }
-      acc[product.category].push(product);
-      return acc;
-    }, {});
-  }, [allProducts]);
 
   const handleFieldChange = useCallback((field, value) => {
     setCustomerInfo(prev => ({ ...prev, [field]: value }));
@@ -103,7 +99,6 @@ export default function Order() {
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       showToast('Pedido enviado exitosamente', 'success');
       
-      // Cerrar el drawer en mobile después de enviar
       setIsCartOpen(false);
       
       setTimeout(() => {
@@ -120,21 +115,11 @@ export default function Order() {
     }
   }, [cart, customerInfo, getTotal, showToast]);
 
-  const handleAddToCart = useCallback((product) => {
-    addToCart(product);
-    showToast('Producto agregado al carrito', 'success');
-    // Abrir el drawer en mobile cuando se agrega un producto
-    if (window.innerWidth < 1024) {
-      setIsCartOpen(true);
-    }
-  }, [addToCart, showToast]);
-
   const handleRemoveFromCart = useCallback((productId) => {
     removeFromCart(productId);
     showToast('Producto eliminado del carrito', 'info');
   }, [removeFromCart, showToast]);
 
-  // Función para renderizar el contenido del carrito (reutilizable)
   const renderCartContent = () => (
     <>
       <div className="flex items-center justify-between mb-4">
@@ -335,52 +320,10 @@ export default function Order() {
           )}
 
           <div className={`grid grid-cols-1 ${showProducts ? 'lg:grid-cols-3' : 'lg:grid-cols-1'} gap-8`}>
-            {/* Productos */}
+            {/* Productos - Usando componente Menu */}
             {showProducts && (
-              <div className="lg:col-span-2 text-primary">
-                {Object.entries(groupedProducts).map(([category, products]) => (
-                  <div key={category} className="mb-12">
-                    <h2 className="font-display text-3xl mb-6 text-primary">{category}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {products.map((product) => (
-                        <article
-                          key={product.id}
-                          className="group dark-card rounded-2xl overflow-hidden shadow-lg border transition-all hover:shadow-xl"
-                          style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)' }}
-                        >
-                          {product.image && (
-                            <div className="relative h-48 overflow-hidden">
-                              <img
-                                alt={product.name}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                src={product.image}
-                                loading="lazy"
-                              />
-                            </div>
-                          )}
-                          <div className="p-4">
-                            <h3 className="font-bold text-lg mb-2" style={{ color: 'var(--text-primary)' }}>
-                              {product.name}
-                            </h3>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xl font-bold text-secondary" aria-label={`Precio: ${formatPrice(product.price)}`}>
-                                {formatPrice(product.price)}
-                              </span>
-                              <button
-                                onClick={() => handleAddToCart(product)}
-                                className="bg-accent text-white px-4 py-2 rounded-xl hover:bg-green-800 transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-                                aria-label={`Agregar ${product.name} al carrito`}
-                              >
-                                <span className="material-icons text-sm" aria-hidden="true">add</span>
-                                Agregar
-                              </button>
-                            </div>
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+              <div className="lg:col-span-2">
+                <Menu showHeader={false} compactMode={true} />
               </div>
             )}
 

@@ -45,12 +45,12 @@ export default function Header() {
           >
             Home
           </Link>
-          <a 
+          <Link 
+            to={ROUTES.menu}
             className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-            href={ANCHORS.menu}
           >
             Menu
-          </a>
+          </Link>
           <button
             className="p-2 rounded-full transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{
@@ -195,13 +195,13 @@ export default function Header() {
             >
               Home
             </Link>
-            <a 
-              className="hover:text-primary transition-colors py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              href={ANCHORS.menu}
+            <Link 
+              to={ROUTES.menu}
               onClick={closeMobileMenu}
+              className="hover:text-primary transition-colors py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Menu
-            </a>
+            </Link>
             <Link
               to={ROUTES.order}
               onClick={closeMobileMenu}

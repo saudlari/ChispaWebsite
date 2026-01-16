@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import { bestSellers as products, hotDogs, burgers, sandwiches, chorrillanas, sides, drinks, combos } from '../data/products';
+import { bestSellers as products, hotDogs, burgers, sandwiches, chorrillanas, sides, drinks, combos, breakfasts, kidsMenu } from '../data/products';
 import { mapProductToCart } from '../utils/productMapper';
 import { useToast } from '../hooks/useToast';
 import Toast from './Toast';
+import { ROUTES } from '../config/constants';
 
 export default function BestSellers() {
   const navigate = useNavigate();
@@ -38,9 +39,19 @@ export default function BestSellers() {
               if (foundProduct) {
                 category = 'Bebidas';
               } else {
-              foundProduct = combos.find(p => p.name === product.name);
-              if (foundProduct) {
-                  category = 'Combos';
+                foundProduct = breakfasts.find(p => p.name === product.name);
+                if (foundProduct) {
+                  category = 'Desayunos';
+                } else {
+                  foundProduct = kidsMenu.find(p => p.name === product.name);
+                  if (foundProduct) {
+                    category = 'Menú Kids';
+                  } else {
+                    foundProduct = combos.find(p => p.name === product.name);
+                    if (foundProduct) {
+                      category = 'Combos';
+                    }
+                  }
                 }
               }
             }
@@ -60,7 +71,7 @@ export default function BestSellers() {
     navigate('/order');
   };
   return (
-    <section className="py-24 transition-colors duration-300" id="menu" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="py-24 transition-colors duration-300" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
           <div>
@@ -69,9 +80,12 @@ export default function BestSellers() {
               Nuestros favoritos de la casa. ¡Pruébalos y descubre por qué todos hablan de nosotros!
             </p>
           </div>
-          <a className="text-primary font-bold flex items-center gap-2 hover:underline" href="#">
+          <Link 
+            to={ROUTES.menu}
+            className="text-primary font-bold flex items-center gap-2 hover:underline"
+          >
             Ver todo el menú <span className="material-icons">arrow_forward</span>
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (

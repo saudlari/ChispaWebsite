@@ -19,7 +19,7 @@ export function mapProductToCart(product, category) {
     category,
     name: product.name,
     price: product.price,
-    image: product.image,
+    image: product.image || product.icon || '',
   };
 }
 

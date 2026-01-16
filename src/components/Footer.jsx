@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import WebsiteCarbonBadge from 'react-websitecarbon-badge';
+import { WebsiteCarbonBadge } from 'react-websitecarbon-badge';
+import { ROUTES } from '../config/constants';
 
 export default function Footer() {
   return (
@@ -35,13 +36,13 @@ export default function Footer() {
               <h4 className="font-bold text-lg mb-6 text-slate-900 dark:text-slate-100">Enlaces Rápidos</h4>
               <ul className="space-y-3">
                 <li>
-                  <a 
-                    className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm" 
-                    href="#menu"
+                  <Link 
+                    to={ROUTES.menu}
+                    className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm"
                   >
                     <span className="material-icons text-base">restaurant_menu</span>
                     Nuestro Menú
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link 
@@ -67,27 +68,17 @@ export default function Footer() {
             {/* Horarios */}
             <div>
               <h4 className="font-bold text-lg mb-6 text-slate-900 dark:text-slate-100">Horarios</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-1">
                 <li className="flex justify-between items-center text-slate-600 dark:text-slate-400 text-sm">
                   <span className="flex items-center gap-2">
                     <span className="material-icons text-base">schedule</span>
-                    Lun - Jue:
+                    Lun: Cerrado
                   </span>
-                  <span className="font-semibold">11:00 - 22:00</span>
                 </li>
                 <li className="flex justify-between items-center text-slate-600 dark:text-slate-400 text-sm">
                   <span className="flex items-center gap-2">
                     <span className="material-icons text-base">schedule</span>
-                    Vie - Sáb:
-                  </span>
-                  <span className="font-semibold">11:00 - 00:00</span>
-                </li>
-                <li className="flex justify-between items-center text-slate-600 dark:text-slate-400 text-sm">
-                  <span className="flex items-center gap-2">
-                    <span className="material-icons text-base">schedule</span>
-                    Dom:
-                  </span>
-                  <span className="font-semibold">12:00 - 22:00</span>
+                    Mar - Dom: 12:00 - 23:00</span>
                 </li>
               </ul>
             </div>
@@ -132,9 +123,14 @@ export default function Footer() {
           </div>
           <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-slate-500 dark:text-slate-400 text-sm">
-                © 2024 El Chispa Express. Todos los derechos reservados.
-              </p>
+              <div className="flex flex-col items-center md:items-start gap-1">
+                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                  © 2026 El Chispa Express. Todos los derechos reservados.
+                </p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">
+                  Hecho con <span className="text-red-500">❤️</span> por <a href="https://iwalab.site" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">IwaLab</a> por un futuro más sostenible.
+                </p>
+              </div>
               <div className="flex justify-center">
                 <WebsiteCarbonBadge url="https://chispaexpress.netlify.app/" />
               </div>
