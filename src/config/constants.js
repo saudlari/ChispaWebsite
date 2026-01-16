@@ -56,10 +56,11 @@ export const APP_CONFIG = {
 export const ROUTES = {
   home: '/',
   order: '/order',
+  menu: '/menu',
 };
 
 export const ANCHORS = {
-  menu: '#menu',
+  menu: '/menu',
   locations: '#locations',
 };
 

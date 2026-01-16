@@ -6,6 +6,7 @@ import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const OrderPage = lazy(() => import('./pages/OrderPage'));
+const MenuPage = lazy(() => import('./pages/MenuPage'));
 
 function LoadingFallback() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/order" element={<OrderPage />} />
+              <Route path="/menu" element={<MenuPage />} />
             </Routes>
           </Suspense>
         </Router>

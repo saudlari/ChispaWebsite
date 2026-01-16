@@ -1,4 +1,5 @@
-import { APP_CONFIG } from '../config/constants';
+import { Link } from 'react-router-dom';
+import { APP_CONFIG, ROUTES } from '../config/constants';
 
 export default function Hero() {
   const { hero: heroImage } = APP_CONFIG.images;
@@ -48,12 +49,12 @@ export default function Hero() {
             Los mejores completos, hamburguesas y papas fritas de Copiapó, listos en minutos para matar tu hambre.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a
+            <Link
+              to={ROUTES.menu}
               className="bg-secondary text-slate-900 font-bold px-8 py-4 rounded-xl text-lg hover:shadow-2xl transition-all hover:-translate-y-1"
-              href="#menu"
             >
               Ver Menú Completo
-            </a>
+            </Link>
             <a
               className="bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold px-8 py-4 rounded-xl text-lg hover:bg-white/30 transition-all"
               href="#locations"
