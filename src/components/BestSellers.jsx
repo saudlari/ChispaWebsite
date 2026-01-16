@@ -12,58 +12,26 @@ export default function BestSellers() {
   const { toast, showToast, hideToast } = useToast();
 
   const handleAddToCart = (product) => {
-    let foundProduct = null;
-    let category = 'Completos';
-    
-    foundProduct = hotDogs.find(p => p.name === product.name);
-    if (foundProduct) {
-      category = 'Completos';
-    } else {
-      foundProduct = burgers.find(p => p.name === product.name);
+    const categories = [
+      { products: hotDogs, name: 'Completos' },
+      { products: burgers, name: 'Burgers' },
+      { products: sandwiches, name: 'Sandwiches' },
+      { products: chorrillanas, name: 'Chorrillanas' },
+      { products: sides, name: 'Sides' },
+      { products: drinks, name: 'Bebidas' },
+      { products: breakfasts, name: 'Desayunos' },
+      { products: kidsMenu, name: 'Menú Kids' },
+      { products: combos, name: 'Combos' },
+    ];
+
+    for (const { products: categoryProducts, name: categoryName } of categories) {
+      const foundProduct = categoryProducts.find(p => p.name === product.name);
       if (foundProduct) {
-        category = 'Burgers';
-      } else {
-        foundProduct = sandwiches.find(p => p.name === product.name);
-        if (foundProduct) {
-          category = 'Sandwiches';
-        } else {
-          foundProduct = chorrillanas.find(p => p.name === product.name);
-          if (foundProduct) {
-            category = 'Chorrillanas';
-          } else {
-            foundProduct = sides.find(p => p.name === product.name);
-            if (foundProduct) {
-              category = 'Sides';
-            } else {
-              foundProduct = drinks.find(p => p.name === product.name);
-              if (foundProduct) {
-                category = 'Bebidas';
-              } else {
-                foundProduct = breakfasts.find(p => p.name === product.name);
-                if (foundProduct) {
-                  category = 'Desayunos';
-                } else {
-                  foundProduct = kidsMenu.find(p => p.name === product.name);
-                  if (foundProduct) {
-                    category = 'Menú Kids';
-                  } else {
-                    foundProduct = combos.find(p => p.name === product.name);
-                    if (foundProduct) {
-                      category = 'Combos';
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        const cartProduct = mapProductToCart(foundProduct, categoryName);
+        addToCart(cartProduct);
+        showToast('Producto agregado al carrito. Toca para ver tu pedido', 'success');
+        return;
       }
-    }
-    
-    if (foundProduct) {
-      const cartProduct = mapProductToCart(foundProduct, category);
-      addToCart(cartProduct);
-      showToast('Producto agregado al carrito. Toca para ver tu pedido', 'success');
     }
   };
 
