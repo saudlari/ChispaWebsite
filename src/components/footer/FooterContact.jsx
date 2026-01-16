@@ -18,7 +18,7 @@ export default function FooterContact() {
             href="https://wa.me/56936400558"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-600 dark:text-slate-400 hover:text-[#25D366] transition-colors flex items-center gap-2 text-sm group"
+            className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm group"
           >
             <span className="material-icons text-base group-hover:scale-110 transition-transform">chat</span>
             <span className="font-semibold">WhatsApp</span>
@@ -29,7 +29,7 @@ export default function FooterContact() {
             href="https://www.instagram.com/elchispaexpress/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-600 dark:text-slate-400 hover:text-pink-600 transition-colors flex items-center gap-2 text-sm group"
+            className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 text-sm group"
           >
             <span className="material-icons text-base group-hover:scale-110 transition-transform">camera_alt</span>
             <span className="font-semibold">Instagram</span>
