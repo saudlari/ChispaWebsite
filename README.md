@@ -1,46 +1,46 @@
-# El Chispa Express - Sitio Web
+# El Chispa Express - Website
 
-Sitio web moderno y optimizado para El Chispa Express, una aplicación de comida rápida con sistema de pedidos por WhatsApp.
+Modern and optimized website for El Chispa Express, a fast food application with WhatsApp ordering system.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Diseño Responsive**: Optimizado para móviles, tablets y desktop
-- **Modo Oscuro**: Soporte completo para tema claro/oscuro
-- **Carrito de Compras**: Gestión de pedidos con persistencia en localStorage
-- **Pedidos por WhatsApp**: Integración directa con WhatsApp para envío de pedidos
-- **Optimizado para Producción**: Code splitting, lazy loading, y optimizaciones de rendimiento
-- **Accesibilidad**: Cumple con estándares WCAG para mejor experiencia de usuario
-- **SEO Optimizado**: Meta tags, Open Graph, y estructura semántica
+- **Responsive Design**: Optimized for mobile, tablets, and desktop
+- **Dark Mode**: Full support for light/dark theme
+- **Shopping Cart**: Order management with localStorage persistence
+- **WhatsApp Orders**: Direct integration with WhatsApp for order submission
+- **Production Optimized**: Code splitting, lazy loading, and performance optimizations
+- **Accessibility**: Complies with WCAG standards for better user experience
+- **SEO Optimized**: Meta tags, Open Graph, and semantic structure
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-- **React 19** - Biblioteca de UI
-- **Vite** - Build tool y dev server
-- **Tailwind CSS 4** - Framework de estilos
-- **DaisyUI** - Componentes de UI
-- **React Router** - Enrutamiento
+- **React 19** - UI library
+- **Vite** - Build tool and dev server
+- **Tailwind CSS 4** - Styling framework
+- **DaisyUI** - UI components
+- **React Router** - Routing
 
-## 📦 Instalación
+## 📦 Installation
 
 ```bash
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Iniciar servidor de desarrollo
+# Start development server
 npm run dev
 
-# Construir para producción
+# Build for production
 npm run build
 
-# Previsualizar build de producción
+# Preview production build
 npm run preview
 ```
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Entorno
+### Environment Variables
 
-Crea un archivo `.env` basado en `.env.example`:
+Create a `.env` file based on `.env.example`:
 
 ```env
 VITE_WHATSAPP_NUMBER=56936400558
@@ -48,130 +48,130 @@ VITE_APP_URL=https://elchispaexpress.cl
 VITE_DEV_MODE=false
 ```
 
-### Configuración de Producción
+### Production Configuration
 
-1. **Actualizar constantes**: Revisa `src/config/constants.js` para ajustar valores según tu negocio
-2. **Configurar WhatsApp**: Actualiza `VITE_WHATSAPP_NUMBER` en `.env` con tu número de WhatsApp
-3. **Optimizar imágenes**: Considera usar un CDN o servicio de optimización de imágenes para las URLs de Google Photos
+1. **Update constants**: Review `src/config/constants.js` to adjust values according to your business
+2. **Configure WhatsApp**: Update `VITE_WHATSAPP_NUMBER` in `.env` with your WhatsApp number
+3. **Optimize images**: Consider using a CDN or image optimization service for Google Photos URLs
 
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 src/
-├── components/       # Componentes reutilizables
+├── components/       # Reusable components
 │   ├── ErrorBoundary.jsx
 │   ├── Toast.jsx
 │   └── ...
-├── config/          # Configuración y constantes
+├── config/          # Configuration and constants
 │   └── constants.js
-├── contexts/        # Contextos de React
+├── contexts/        # React contexts
 │   └── CartContext.jsx
-├── data/            # Datos estáticos
+├── data/            # Static data
 │   └── products.js
-├── hooks/           # Hooks personalizados
+├── hooks/           # Custom hooks
 │   ├── useTheme.js
 │   └── useToast.js
-├── pages/           # Páginas principales
+├── pages/           # Main pages
 │   ├── Home.jsx
 │   └── OrderPage.jsx
-└── utils/           # Utilidades
+└── utils/           # Utilities
     ├── format.js
     ├── validation.js
     └── whatsapp.js
 ```
 
-## 🚢 Despliegue
+## 🚢 Deployment
 
-### Build de Producción
+### Production Build
 
 ```bash
 npm run build
 ```
 
-El build se generará en la carpeta `dist/` lista para desplegar.
+The build will be generated in the `dist/` folder ready to deploy.
 
-### Opciones de Despliegue
+### Deployment Options
 
-- **Vercel**: Conecta tu repositorio y despliega automáticamente
-- **Netlify**: Arrastra la carpeta `dist/` o conecta el repositorio
-- **GitHub Pages**: Usa GitHub Actions para desplegar automáticamente
-- **Servidor propio**: Sube la carpeta `dist/` a tu servidor web
+- **Vercel**: Connect your repository and deploy automatically
+- **Netlify**: Drag the `dist/` folder or connect the repository
+- **GitHub Pages**: Use GitHub Actions to deploy automatically
+- **Own server**: Upload the `dist/` folder to your web server
 
-### Variables de Entorno en Producción
+### Environment Variables in Production
 
-Asegúrate de configurar las variables de entorno en tu plataforma de despliegue:
+Make sure to configure environment variables in your deployment platform:
 
-- `VITE_WHATSAPP_NUMBER`: Número de WhatsApp para pedidos
-- `VITE_APP_URL`: URL base de tu aplicación
+- `VITE_WHATSAPP_NUMBER`: WhatsApp number for orders
+- `VITE_APP_URL`: Base URL of your application
 
-## 📝 Mejores Prácticas Implementadas
+## 📝 Best Practices Implemented
 
-- ✅ Validación de formularios robusta
-- ✅ Manejo de errores con Error Boundaries
-- ✅ Optimización de rendimiento (memoización, lazy loading)
-- ✅ Accesibilidad (ARIA labels, navegación por teclado)
-- ✅ SEO optimizado (meta tags, Open Graph)
-- ✅ Código limpio y mantenible
-- ✅ Variables de entorno para configuración
-- ✅ Constantes centralizadas
-- ✅ TypeScript-ready (estructura preparada)
+- ✅ Robust form validation
+- ✅ Error handling with Error Boundaries
+- ✅ Performance optimization (memoization, lazy loading)
+- ✅ Accessibility (ARIA labels, keyboard navigation)
+- ✅ SEO optimized (meta tags, Open Graph)
+- ✅ Clean and maintainable code
+- ✅ Environment variables for configuration
+- ✅ Centralized constants
+- ✅ TypeScript-ready (prepared structure)
 
-## 🔧 Scripts Disponibles
+## 🔧 Available Scripts
 
-- `npm run dev` - Inicia servidor de desarrollo
-- `npm run build` - Construye para producción
-- `npm run preview` - Previsualiza build de producción
-- `npm run lint` - Ejecuta ESLint
-- `npm run lint:fix` - Ejecuta ESLint y corrige errores automáticamente
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Run ESLint and fix errors automatically
 
-## 📱 Características del Carrito
+## 📱 Cart Features
 
-- Persistencia en localStorage
-- Validación de cantidades
-- Cálculo automático de totales
-- Gestión de items individuales
-- Limpieza de datos corruptos automática
+- localStorage persistence
+- Quantity validation
+- Automatic total calculation
+- Individual item management
+- Automatic cleanup of corrupted data
 
-## 🎨 Personalización
+## 🎨 Customization
 
-### Colores
+### Colors
 
-Los colores principales están definidos en `tailwind.config.js` y `src/index.css`:
+Main colors are defined in `tailwind.config.js` and `src/index.css`:
 
-- Primary: `#D32F2F` (Rojo)
-- Secondary: `#FBC02D` (Amarillo)
-- Accent: `#1B5E20` (Verde)
+- Primary: `#D32F2F` (Red)
+- Secondary: `#FBC02D` (Yellow)
+- Accent: `#1B5E20` (Green)
 
-### Fuentes
+### Fonts
 
-- Display: Bangers (títulos)
-- Sans: Poppins (texto general)
+- Display: Bangers (titles)
+- Sans: Poppins (general text)
 
-## 🐛 Solución de Problemas
+## 🐛 Troubleshooting
 
-### El carrito no persiste
+### Cart doesn't persist
 
-- Verifica que localStorage esté habilitado en el navegador
-- Revisa la consola del navegador para errores
+- Verify that localStorage is enabled in the browser
+- Check the browser console for errors
 
-### Las imágenes no cargan
+### Images don't load
 
-- Verifica que las URLs de Google Photos sean públicas
-- Considera usar un servicio de optimización de imágenes
+- Verify that Google Photos URLs are public
+- Consider using an image optimization service
 
-### El tema oscuro no funciona
+### Dark mode doesn't work
 
-- Verifica que Tailwind CSS esté configurado correctamente
-- Revisa la consola del navegador para errores de JavaScript
+- Verify that Tailwind CSS is configured correctly
+- Check the browser console for JavaScript errors
 
-## 📄 Licencia
+## 📄 License
 
 MIT
 
-## 👥 Contribución
+## 👥 Contribution
 
-Este es un proyecto privado. Para sugerencias o mejoras, contacta al equipo de desarrollo.
+This is a private project. For suggestions or improvements, contact the development team.
 
 ---
 
-Desarrollado con ❤️ para El Chispa Express
+Developed with ❤️ for El Chispa Express

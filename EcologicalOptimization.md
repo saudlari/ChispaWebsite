@@ -1,84 +1,84 @@
-# 🌱 Guía de Optimización Ecológica - El Chispa Express
+# 🌱 Ecological Optimization Guide - El Chispa Express
 
-Este documento describe las optimizaciones implementadas para hacer la web más ecológica y reducir su huella de carbono.
+This document describes the optimizations implemented to make the website more eco-friendly and reduce its carbon footprint.
 
-## 📊 Impacto Ambiental de las Webs
+## 📊 Environmental Impact of Websites
 
-Las páginas web consumen energía en:
-- **Servidores**: Almacenamiento y procesamiento
-- **Red**: Transmisión de datos
-- **Dispositivos del usuario**: Procesamiento y visualización
-- **CDNs**: Distribución de contenido
+Websites consume energy in:
+- **Servers**: Storage and processing
+- **Network**: Data transmission
+- **User devices**: Processing and display
+- **CDNs**: Content distribution
 
-## ✅ Optimizaciones Implementadas
+## ✅ Implemented Optimizations
 
-### 1. **Optimización de Imágenes**
-- ✅ **Lazy Loading**: Las imágenes se cargan solo cuando están cerca del viewport
-- ✅ **Decoding async**: Procesamiento asíncrono de imágenes
-- ✅ **Formatos optimizados**: Uso de URLs con parámetros de optimización (Unsplash)
-- 📝 **Recomendación futura**: Convertir imágenes a WebP/AVIF para reducir tamaño 60-80%
+### 1. **Image Optimization**
+- ✅ **Lazy Loading**: Images load only when they're near the viewport
+- ✅ **Async decoding**: Asynchronous image processing
+- ✅ **Optimized formats**: Use of URLs with optimization parameters (Unsplash)
+- 📝 **Future recommendation**: Convert images to WebP/AVIF to reduce size by 60-80%
 
-### 2. **Compresión y Minificación**
-- ✅ **Minificación de JavaScript**: Con esbuild
-- ✅ **CSS Code Splitting**: Carga solo el CSS necesario por página
-- ✅ **Chunking inteligente**: Separación de vendor code (React) del código de aplicación
-- ✅ **Assets inline**: Archivos pequeños (<4KB) se incluyen inline para reducir requests
+### 2. **Compression and Minification**
+- ✅ **JavaScript minification**: With esbuild
+- ✅ **CSS Code Splitting**: Load only necessary CSS per page
+- ✅ **Smart chunking**: Separation of vendor code (React) from application code
+- ✅ **Inline assets**: Small files (<4KB) are included inline to reduce requests
 
-### 3. **Optimización de Fuentes**
-- ✅ **Subset de fuentes**: Solo caracteres latinos necesarios
-- ✅ **Display swap**: Evita bloqueo de renderizado
-- ✅ **Preconnect**: Conexiones anticipadas solo a recursos críticos
-- ✅ **DNS Prefetch**: Para recursos no críticos (imágenes externas)
+### 3. **Font Optimization**
+- ✅ **Font subset**: Only necessary Latin characters
+- ✅ **Display swap**: Prevents render blocking
+- ✅ **Preconnect**: Early connections only to critical resources
+- ✅ **DNS Prefetch**: For non-critical resources (external images)
 
-### 4. **Caché y Recursos**
-- ✅ **Meta tags de caché**: Headers HTTP para almacenamiento en navegador
-- ✅ **Lazy loading de componentes**: React.lazy() para code splitting
-- ✅ **Suspense boundaries**: Carga progresiva de componentes
+### 4. **Cache and Resources**
+- ✅ **Cache meta tags**: HTTP headers for browser storage
+- ✅ **Component lazy loading**: React.lazy() for code splitting
+- ✅ **Suspense boundaries**: Progressive component loading
 
-### 5. **Configuración de Build**
-- ✅ **Sourcemaps deshabilitados**: En producción (reducen tamaño)
-- ✅ **Nombres de archivos optimizados**: Hash cortos para mejor caché
-- ✅ **Reporte de tamaño comprimido**: Monitoreo de bundle size
+### 5. **Build Configuration**
+- ✅ **Sourcemaps disabled**: In production (reduces size)
+- ✅ **Optimized file names**: Short hashes for better caching
+- ✅ **Compressed size report**: Bundle size monitoring
 
-## 🎯 Métricas de Impacto
+## 🎯 Impact Metrics
 
-### Reducción Estimada:
-- **Tamaño inicial**: ~30-40% menor con lazy loading
-- **Requests HTTP**: Reducción del 20-30% con code splitting
-- **Tiempo de carga**: Mejora del 25-35% en conexiones lentas
-- **Consumo de datos**: Reducción del 15-25% en mobile
+### Estimated Reduction:
+- **Initial size**: ~30-40% smaller with lazy loading
+- **HTTP requests**: 20-30% reduction with code splitting
+- **Load time**: 25-35% improvement on slow connections
+- **Data consumption**: 15-25% reduction on mobile
 
-## 📋 Recomendaciones Adicionales
+## 📋 Additional Recommendations
 
-### Hosting Verde
-- 🌿 Usar proveedores con energía renovable:
-  - **Vercel**: 100% energía renovable
-  - **Netlify**: Compensación de carbono
-  - **GreenGeeks**: Hosting ecológico certificado
+### Green Hosting
+- 🌿 Use providers with renewable energy:
+  - **Vercel**: 100% renewable energy
+  - **Netlify**: Carbon offset
+  - **GreenGeeks**: Certified eco-friendly hosting
 
-### Optimizaciones Futuras
-1. **Service Worker**: Caché offline para reducir requests repetidos
-2. **Imágenes WebP/AVIF**: Convertir todas las imágenes a formatos modernos
-3. **CDN ecológico**: Usar Cloudflare o similar con eficiencia energética
-4. **Compresión Brotli**: Mejor que gzip (reducción adicional del 15-20%)
-5. **Preload crítico**: Cargar solo recursos críticos arriba del fold
-6. **Reducir JavaScript**: Evaluar si todas las librerías son necesarias
-7. **Dark mode por defecto**: Reduce consumo en pantallas OLED (ahorro del 30-50%)
+### Future Optimizations
+1. **Service Worker**: Offline cache to reduce repeated requests
+2. **WebP/AVIF images**: Convert all images to modern formats
+3. **Eco-friendly CDN**: Use Cloudflare or similar with energy efficiency
+4. **Brotli compression**: Better than gzip (additional 15-20% reduction)
+5. **Critical preload**: Load only critical resources above the fold
+6. **Reduce JavaScript**: Evaluate if all libraries are necessary
+7. **Dark mode by default**: Reduces consumption on OLED screens (30-50% savings)
 
-### Monitoreo
-- Usar herramientas como:
+### Monitoring
+- Use tools like:
   - **Website Carbon Calculator**: https://www.websitecarbon.com/
   - **PageSpeed Insights**: https://pagespeed.web.dev/
-  - **Lighthouse**: Auditoría de rendimiento y accesibilidad
+  - **Lighthouse**: Performance and accessibility audit
 
-## 🌍 Impacto Ambiental
+## 🌍 Environmental Impact
 
-Una web optimizada puede reducir:
-- **CO2 por visita**: De ~1.76g a ~0.5g (reducción del 70%)
-- **Energía consumida**: De ~0.5 kWh/1000 visitas a ~0.15 kWh/1000 visitas
-- **Agua utilizada**: Reducción proporcional en centros de datos
+An optimized website can reduce:
+- **CO2 per visit**: From ~1.76g to ~0.5g (70% reduction)
+- **Energy consumed**: From ~0.5 kWh/1000 visits to ~0.15 kWh/1000 visits
+- **Water used**: Proportional reduction in data centers
 
-## 📚 Recursos
+## 📚 Resources
 
 - [Green Web Foundation](https://www.thegreenwebfoundation.org/)
 - [Sustainable Web Design](https://sustainablewebdesign.org/)
@@ -87,6 +87,5 @@ Una web optimizada puede reducir:
 
 ---
 
-**Última actualización**: Enero 2025
-**Versión**: 1.0
-
+**Last updated**: January 2025
+**Version**: 1.0
