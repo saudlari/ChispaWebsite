@@ -48,7 +48,7 @@ export const APP_CONFIG = {
       tablet: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3',
       mobile: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3',
       default: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3',
-      alt: 'Deliciosos hot dogs y comida rápida',
+      alt: 'Deliciosos completos y comida rápida',
     },
   },
 };
