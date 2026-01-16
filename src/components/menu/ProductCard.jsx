@@ -14,13 +14,18 @@ export default function ProductCard({ product, category, onAddToCart, layout = '
             loading="lazy"
             decoding="async"
           />
+          <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
+            {product.priceDisplay}
+          </div>
+          {product.badge && (
+            <div className="absolute top-4 left-4 bg-accent text-white font-bold px-3 py-1 rounded-full text-xs uppercase tracking-tighter">
+              {product.badge}
+            </div>
+          )}
         </div>
         <div className="p-8 flex-1 flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-3xl font-bold text-slate-100 group-hover:text-primary transition-colors">{product.name}</h3>
-              <span className="text-2xl font-bold text-accent">{product.priceDisplay}</span>
-            </div>
+            <h3 className="text-3xl font-bold text-slate-100 group-hover:text-primary transition-colors mb-4">{product.name}</h3>
             <p className="text-slate-600 dark:text-slate-400 mb-6">{product.description}</p>
           </div>
           <button 
@@ -53,10 +58,17 @@ export default function ProductCard({ product, category, onAddToCart, layout = '
             loading="lazy"
             decoding="async"
           />
+          <div className="absolute top-2 right-2 bg-primary text-white font-bold px-2 py-1 rounded-full shadow-lg text-xs">
+            {product.priceDisplay}
+          </div>
+          {product.badge && (
+            <div className="absolute top-2 left-2 bg-accent text-white font-bold px-2 py-1 rounded-full text-xs uppercase tracking-tighter">
+              {product.badge}
+            </div>
+          )}
         </div>
-        <div className="flex justify-between items-center mb-2">
+        <div className="mb-2">
           <h4 className="font-bold text-slate-100 group-hover:text-primary transition-colors">{product.name}</h4>
-          <span className="text-primary font-bold">{product.priceDisplay}</span>
         </div>
         <p className="text-xs mb-4 transition-colors duration-300" style={{ color: 'var(--text-muted)' }}>{product.description}</p>
         <button 
