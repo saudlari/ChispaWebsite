@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { useCart } from '../contexts/CartContext';
 import { APP_CONFIG, ROUTES, ANCHORS } from '../config/constants';
@@ -7,6 +7,7 @@ import { APP_CONFIG, ROUTES, ANCHORS } from '../config/constants';
 export default function Header() {
   const { toggleTheme, theme } = useTheme();
   const { getItemCount } = useCart();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const itemCount = getItemCount();
 
@@ -37,7 +38,7 @@ export default function Header() {
             {APP_CONFIG.name.toUpperCase()}
           </Link>
         </div>
-        <nav className="hidden md:flex items-center gap-8 font-semibold" role="navigation" aria-label="Navegación principal">
+        <nav className="hidden md:flex items-center gap-6 font-semibold" role="navigation" aria-label="Navegación principal">
           <Link 
             to={ROUTES.home} 
             className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
@@ -78,6 +79,32 @@ export default function Header() {
               light_mode
             </span>
           </button>
+          {/* Carrito en Desktop/Tablet */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              // Disparar evento personalizado para abrir el drawer en mobile
+              if (window.innerWidth < 1024) {
+                sessionStorage.setItem('openCartDrawer', 'true');
+                window.dispatchEvent(new CustomEvent('openCartDrawer'));
+              }
+              navigate(ROUTES.order);
+            }}
+            className="relative p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded transition-colors hover:opacity-80"
+            aria-label="Ver carrito"
+            type="button"
+          >
+            <span className="material-icons text-2xl">shopping_cart</span>
+            {itemCount > 0 && (
+              <span 
+                className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                aria-label={`${itemCount} items en el carrito`}
+              >
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
+          </button>
           <Link
             to={ROUTES.order}
             className="bg-accent text-white px-6 py-2 rounded-full hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
@@ -87,11 +114,20 @@ export default function Header() {
           </Link>
         </nav>
         <div className="md:hidden flex items-center gap-2">
-          <Link
-            to={ROUTES.order}
-            onClick={closeMobileMenu}
-            className="relative p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              closeMobileMenu();
+              // Marcar que se debe abrir el drawer y disparar evento
+              sessionStorage.setItem('openCartDrawer', 'true');
+              window.dispatchEvent(new CustomEvent('openCartDrawer'));
+              navigate(ROUTES.order);
+            }}
+            className="relative p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded z-50"
             aria-label="Ver carrito"
+            style={{ zIndex: 60 }}
+            type="button"
           >
             <span className="material-icons text-3xl">shopping_cart</span>
             {itemCount > 0 && (
@@ -102,7 +138,7 @@ export default function Header() {
                 {itemCount > 99 ? '99+' : itemCount}
               </span>
             )}
-          </Link>
+          </button>
           <button 
             className="p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded z-50 relative"
             aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}

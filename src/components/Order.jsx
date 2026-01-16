@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { getAllProductsForOrder } from '../data/products';
 import { generateWhatsAppUrl } from '../utils/whatsapp';
@@ -11,6 +12,7 @@ import Toast from './Toast';
 export default function Order() {
   const { cart, addToCart, removeFromCart, updateQuantity, getTotal } = useCart();
   const { toast, showToast, hideToast } = useToast();
+  const location = useLocation();
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
     phone: '',
@@ -21,6 +23,42 @@ export default function Order() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showProducts, setShowProducts] = useState(true);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Manejar apertura del drawer desde el header
+  useEffect(() => {
+    const handleOpenCartDrawer = () => {
+      if (window.innerWidth < 1024) {
+        // Pequeño delay para asegurar que el componente esté renderizado
+        setTimeout(() => {
+          setIsCartOpen(true);
+        }, 100);
+      }
+    };
+
+    // Escuchar evento personalizado
+    window.addEventListener('openCartDrawer', handleOpenCartDrawer);
+
+    // Verificar sessionStorage al montar o cuando cambia la ruta
+    const checkSessionStorage = () => {
+      const shouldOpenCart = sessionStorage.getItem('openCartDrawer');
+      if (shouldOpenCart === 'true' && window.innerWidth < 1024) {
+        setTimeout(() => {
+          setIsCartOpen(true);
+          sessionStorage.removeItem('openCartDrawer');
+        }, 150);
+      }
+    };
+
+    // Verificar inmediatamente y cuando cambia la ruta
+    checkSessionStorage();
+    if (location.pathname === '/order') {
+      checkSessionStorage();
+    }
+
+    return () => {
+      window.removeEventListener('openCartDrawer', handleOpenCartDrawer);
+    };
+  }, [location.pathname]);
 
   const allProducts = useMemo(() => getAllProductsForOrder(), []);
 
