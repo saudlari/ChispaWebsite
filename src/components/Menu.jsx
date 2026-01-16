@@ -2,14 +2,21 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { hotDogs, burgers, sandwiches, chorrillanas, sides, drinks, breakfasts, kidsMenu } from '../data/products';
 import { mapProductToCart } from '../utils/productMapper';
+import { useToast } from '../hooks/useToast';
+import Toast from './Toast';
 
 export default function Menu() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { toast, showToast, hideToast } = useToast();
 
   const handleAddToCart = (product, category) => {
     const cartProduct = mapProductToCart(product, category);
     addToCart(cartProduct);
+    showToast('Producto agregado al carrito. Toca para ver tu pedido', 'success');
+  };
+
+  const handleToastClick = () => {
     navigate('/order');
   };
 
@@ -72,7 +79,7 @@ export default function Menu() {
                   <h3 className="text-2xl font-bold mb-2 text-slate-100 group-hover:text-primary transition-colors">{item.name}</h3>
                   <p className="mb-6 text-sm leading-relaxed transition-colors duration-300" style={{ color: 'var(--text-muted)' }}>{item.description}</p>
                   <button 
-                    onClick={() => handleAddToCart(item, 'Hot Dogs')}
+                    onClick={() => handleAddToCart(item, 'Completos')}
                     className="w-full bg-secondary text-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all"
                   >
                     <span className="material-icons">add_shopping_cart</span> Add to Order
@@ -371,6 +378,13 @@ export default function Menu() {
           </div>
         </div>
       </main>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+        onClick={handleToastClick}
+      />
     </section>
   );
 }

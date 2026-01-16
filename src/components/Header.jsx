@@ -1,9 +1,22 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
+import { useCart } from '../contexts/CartContext';
 import { APP_CONFIG, ROUTES, ANCHORS } from '../config/constants';
 
 export default function Header() {
   const { toggleTheme, theme } = useTheme();
+  const { getItemCount } = useCart();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const itemCount = getItemCount();
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header 
@@ -73,14 +86,135 @@ export default function Header() {
             ¡Pide Ahora!
           </Link>
         </nav>
-        <button 
-          className="md:hidden p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
-          aria-label="Abrir menú de navegación"
-          aria-expanded="false"
-        >
-          <span className="material-icons text-3xl" aria-hidden="true">menu</span>
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <Link
+            to={ROUTES.order}
+            className="relative p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+            aria-label="Ver carrito"
+          >
+            <span className="material-icons text-3xl">shopping_cart</span>
+            {itemCount > 0 && (
+              <span 
+                className="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                aria-label={`${itemCount} items en el carrito`}
+              >
+                {itemCount > 99 ? '99+' : itemCount}
+              </span>
+            )}
+          </Link>
+          <button 
+            className="p-2 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded z-50 relative"
+            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-expanded={isMobileMenuOpen}
+            onClick={toggleMobileMenu}
+            type="button"
+          >
+            <span 
+              className="material-icons text-3xl transition-transform duration-300" 
+              aria-hidden="true"
+              style={{ transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
+            >
+              {isMobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Overlay */}
+          <div 
+            className="md:hidden fixed inset-0 top-20 z-30 bg-black/50 backdrop-blur-sm"
+            onClick={closeMobileMenu}
+            aria-hidden="true"
+          />
+          {/* Menu Content */}
+          <div 
+            className="md:hidden fixed inset-x-0 top-20 z-40 transition-all duration-300 shadow-lg"
+            style={{
+              backgroundColor: 'var(--header-bg)',
+              backdropFilter: 'blur(10px)',
+              borderTop: '1px solid var(--header-border)'
+            }}
+          >
+            <nav 
+              className="flex flex-col p-6 gap-4 font-semibold"
+              role="navigation"
+              aria-label="Navegación móvil"
+            >
+            <Link 
+              to={ROUTES.home}
+              onClick={closeMobileMenu}
+              className="font-display text-xl tracking-wider text-primary mb-2 pb-4 border-b"
+              style={{ borderColor: 'var(--header-border)' }}
+            >
+              {APP_CONFIG.name.toUpperCase()}
+            </Link>
+            <Link 
+              to={ROUTES.home}
+              onClick={closeMobileMenu}
+              className="hover:text-primary transition-colors py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              Home
+            </Link>
+            <a 
+              className="hover:text-primary transition-colors py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              href={ANCHORS.menu}
+              onClick={closeMobileMenu}
+            >
+              Menu
+            </a>
+            <Link
+              to={ROUTES.order}
+              onClick={closeMobileMenu}
+              className="bg-accent text-white px-6 py-3 rounded-full hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 text-center relative flex items-center justify-center gap-2"
+              aria-label="Hacer un pedido"
+            >
+              <span className="material-icons">shopping_cart</span>
+              <span>¡Pide Ahora!</span>
+              {itemCount > 0 && (
+                <span 
+                  className="absolute -top-1 -right-1 bg-white text-accent text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+                  aria-label={`${itemCount} items en el carrito`}
+                >
+                  {itemCount > 99 ? '99+' : itemCount}
+                </span>
+              )}
+            </Link>
+            <button
+              className="p-3 rounded-full transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center gap-2"
+              style={{
+                backgroundColor: 'var(--button-bg)'
+              }}
+              onClick={toggleTheme}
+              id="theme-toggle-mobile"
+              type="button"
+              aria-label={theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+              aria-pressed={theme === 'dark'}
+            >
+              <span 
+                className="material-icons text-xl align-middle theme-icon-light" 
+                style={{ display: theme === 'light' ? 'block' : 'none' }}
+                aria-hidden="true"
+              >
+                dark_mode
+              </span>
+              <span 
+                className="material-icons text-xl align-middle theme-icon-dark text-secondary" 
+                style={{ display: theme === 'dark' ? 'block' : 'none' }}
+                aria-hidden="true"
+              >
+                light_mode
+              </span>
+              <span className="ml-2">
+                {theme === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}
+              </span>
+            </button>
+          </nav>
+          </div>
+        </>
+      )}
     </header>
   );
 }

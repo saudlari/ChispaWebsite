@@ -2,18 +2,21 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { bestSellers as products, hotDogs, burgers, sandwiches, chorrillanas, sides, drinks, combos } from '../data/products';
 import { mapProductToCart } from '../utils/productMapper';
+import { useToast } from '../hooks/useToast';
+import Toast from './Toast';
 
 export default function BestSellers() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { toast, showToast, hideToast } = useToast();
 
   const handleAddToCart = (product) => {
     let foundProduct = null;
-    let category = 'Hot Dogs';
+    let category = 'Completos';
     
     foundProduct = hotDogs.find(p => p.name === product.name);
     if (foundProduct) {
-      category = 'Hot Dogs';
+      category = 'Completos';
     } else {
       foundProduct = burgers.find(p => p.name === product.name);
       if (foundProduct) {
@@ -49,8 +52,12 @@ export default function BestSellers() {
     if (foundProduct) {
       const cartProduct = mapProductToCart(foundProduct, category);
       addToCart(cartProduct);
-      navigate('/order');
+      showToast('Producto agregado al carrito. Toca para ver tu pedido', 'success');
     }
+  };
+
+  const handleToastClick = () => {
+    navigate('/order');
   };
   return (
     <section className="py-24 transition-colors duration-300" id="menu" style={{ backgroundColor: 'var(--bg-primary)' }}>
@@ -102,6 +109,13 @@ export default function BestSellers() {
           ))}
         </div>
       </div>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+        onClick={handleToastClick}
+      />
     </section>
   );
 }

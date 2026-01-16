@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function Toast({ message, type = 'info', isVisible, onClose }) {
+export default function Toast({ message, type = 'info', isVisible, onClose, onClick }) {
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
@@ -25,16 +25,30 @@ export default function Toast({ message, type = 'info', isVisible, onClose }) {
     info: 'info',
   };
 
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick();
+      onClose();
+    }
+  };
+
   return (
     <div
-      className={`fixed bottom-4 right-4 z-50 ${typeStyles[type]} text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 min-w-[300px] max-w-md animate-slide-up`}
+      className={`fixed bottom-4 right-4 z-50 ${typeStyles[type]} text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 min-w-[300px] max-w-md animate-slide-up ${onClick ? 'cursor-pointer hover:opacity-90 transition-opacity' : ''}`}
       role="alert"
       aria-live="polite"
+      onClick={handleClick}
     >
       <span className="material-icons">{icons[type]}</span>
       <p className="flex-1">{message}</p>
+      {onClick && (
+        <span className="material-icons text-sm opacity-80">arrow_forward</span>
+      )}
       <button
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
         className="ml-2 hover:opacity-80 transition-opacity"
         aria-label="Cerrar notificación"
       >
