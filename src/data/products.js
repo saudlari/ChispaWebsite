@@ -430,7 +430,7 @@ export const bestSellers = [
     price: 2800,
     priceDisplay: '$2800',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBisn3m2rlRZq6kjKxDRHeUx251p-TsyavEVMN2Cy-QGa3gUEXwdKz2MVIi8N6L6OF0hgWduImK7p_np715alBLJbzGHjmvbLE12iO42Ab51E34OjPggjTFNTT9siH8GiZdRxtJGClMeIcjYZbjdzmlkfhiqIQvfrDIB4YDuCwqyOYDuOoGOQusSU8pV3_8yPMa4_ouywTJE23FOYOg9hGSytQtefHlJPeYtS_bew8uPYs4SPyq1CT47unjButA_7xDZjEgkh5n_MA',
-    badge: 'Popular',
+    badge: 'Completos',
     badgeColor: 'bg-secondary text-primary',
   },
   {
@@ -440,6 +440,8 @@ export const bestSellers = [
     price: 8900,
     priceDisplay: '$8900',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBT7_j1rBhiPNCgFEecpbBmLjySxq974h_qv8ENrfM8ovcuZLVwKUoFDqZF0NkNnz6IiqLV-M4T_KEKOMCwnC2vW7BXe9O85S3Qe0CGseVr8hVyYgr1pOc9rLTgnK_irsz7kIIx18KcYiHM11szdB_KPYV0mACN6MrMY2ElxnTXzRfDX8SCrRYvp08RRi49OulhrWq63yaXDjOP2lcdrOiGzuWIOF_h__NB_keeZWUIsgOORYt8EEBFv4Qc9fObemEV8AT78Rc9O88',
+    badge: 'Burgers',
+    badgeColor: 'bg-secondary text-primary',
   },
   {
     id: 3,
@@ -448,6 +450,8 @@ export const bestSellers = [
     price: 9500,
     priceDisplay: '$9500',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1UNJO4epYSNu2jBRixHMmUcDgjCrJ4QMjYBFa3zbKHgYXoszJnSRTU3kzr3Imuc7vOOhnlkgSNzMxfLqh95CmlZupuGBAQcrM0ba3lQUxhpg-vF3piT2tSI4zeqCoIEPyJ1C_ymXiwCI8fDXXscrpubhtVyRWZY5RqfwCY2qpE5_9DXYnRflBdZ5s5k5vHR2OruECv2rpYLFkWTXpHeEl_XEAzV8BB_tD_KHt9-G_kP3ni970Wup9vxRItRClsYBk0-jnHZjw7Wk',
+    badge: 'Chorrillana',
+    badgeColor: 'bg-secondary text-primary',
   },
   {
     id: 4,
@@ -456,6 +460,8 @@ export const bestSellers = [
     price: 7800,
     priceDisplay: '$7800',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAsqzLZ9z_Kyvg29UJxK0ixU2AI2adACAHfuCFZKSZia6jjiB5anQoSaTX4mI4JxadkcmkKPF1jNT76-GHAQ2DdRyfPSzWU7PTSVRyQt4F94-GXf-65mbIE_PklptGZip496POF83AOrdv_j_c2rehwGQobhqrEHOVrHgXgdHxl_DePQRmX1OX0twQHQU-0VTciCNq10xgiB4zINhVlkQd1VyftpB1Y84U1tkIxIuyGTMxE6EaPfzd3YAK8GgF7N3Px_h65bgM0LY',
+    badge: 'Sandwich',
+    badgeColor: 'bg-secondary text-primary',
   },
   {
     id: 5,
@@ -464,6 +470,8 @@ export const bestSellers = [
     price: 6800,
     priceDisplay: '$6800',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBT7_j1rBhiPNCgFEecpbBmLjySxq974h_qv8ENrfM8ovcuZLVwKUoFDqZF0NkNnz6IiqLV-M4T_KEKOMCwnC2vW7BXe9O85S3Qe0CGseVr8hVyYgr1pOc9rLTgnK_irsz7kIIx18KcYiHM11szdB_KPYV0mACN6MrMY2ElxnTXzRfDX8SCrRYvp08RRi49OulhrWq63yaXDjOP2lcdrOiGzuWIOF_h__NB_keeZWUIsgOORYt8EEBFv4Qc9fObemEV8AT78Rc9O88',
+    badge: 'Sandwich',
+    badgeColor: 'bg-secondary text-primary',
   },
   {
     id: 6,
@@ -482,6 +490,8 @@ export const bestSellers = [
     price: 1000,
     priceDisplay: '$1000',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD1UNJO4epYSNu2jBRixHMmUcDgjCrJ4QMjYBFa3zbKHgYXoszJnSRTU3kzr3Imuc7vOOhnlkgSNzMxfLqh95CmlZupuGBAQcrM0ba3lQUxhpg-vF3piT2tSI4zeqCoIEPyJ1C_ymXiwCI8fDXXscrpubhtVyRWZY5RqfwCY2qpE5_9DXYnRflBdZ5s5k5vHR2OruECv2rpYLFkWTXpHeEl_XEAzV8BB_tD_KHt9-G_kP3ni970Wup9vxRItRClsYBk0-jnHZjw7Wk',
+    badge: 'SIDES',
+    badgeColor: 'bg-secondary text-primary',
   },
   {
     id: 8,
@@ -490,7 +500,7 @@ export const bestSellers = [
     price: 3500,
     priceDisplay: '$3500',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA0t3N7EIeBZnOoZs-Hkd6iNX8JWYM-TzDb3mAENZS18QURhsU_4rNV0ivt4x3goPmRdxH6gYHMTakazskK8zANQ_NUn4aJKDM7KCKE_sM8LIQQmgbHl3yvYn4eCnUOPBiD5E6U563upmrmOn4S98-qzxr6Rzj-TO12VlcfMcCIZg2bFxgWVJBW8i9jLfNX0RvLRNHZS8x7xBSca9v1xT1ri4SDLYtq_sopZTHLB9wNhGgE5BnKs82IwP0-UKU7eln0CxIBZHCVKcg',
-    badge: 'Kids',
+    badge: 'Menú Kids',
     badgeColor: 'bg-primary text-white',
   },
 ];

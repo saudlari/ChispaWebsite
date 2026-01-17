@@ -14,7 +14,8 @@ export default function CategorySection({
   layout = 'vertical',
   gridCols = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
   initialVisibleCount = 3,
-  gap = 'gap-8'
+  gap = 'gap-8',
+  centered = false
 }) {
   const isExpanded = expandedCategories[categoryKey];
   const visibleProducts = isExpanded ? products : products.slice(0, initialVisibleCount);
@@ -23,7 +24,7 @@ export default function CategorySection({
   return (
     <div className={`menu-category-anchor ${id === 'hot-dogs' ? 'pt-8' : 'mt-20'}`} id={id}>
       <CategoryHeader icon={icon} title={title} />
-      <div className={`grid ${gridCols} ${gap}`}>
+      <div className={`grid ${gridCols} ${gap} ${centered ? 'justify-items-center max-w-4xl mx-auto' : ''}`}>
         {visibleProducts.map((product) => (
           <ProductCard
             key={product.id}
