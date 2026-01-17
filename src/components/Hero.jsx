@@ -9,6 +9,23 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <div className="hero-pattern absolute inset-0 opacity-10"></div>
         <picture>
+          {/* WebP para navegadores modernos */}
+          <source
+            type="image/webp"
+            media="(min-width: 1920px)"
+            srcSet={`${heroImage.desktop}&fm=webp`}
+          />
+          <source
+            type="image/webp"
+            media="(min-width: 1280px)"
+            srcSet={`${heroImage.tablet}&fm=webp`}
+          />
+          <source
+            type="image/webp"
+            media="(min-width: 768px)"
+            srcSet={`${heroImage.mobile}&fm=webp`}
+          />
+          {/* Fallback JPEG optimizado */}
           <source
             media="(min-width: 1920px)"
             srcSet={heroImage.desktop}
@@ -29,6 +46,8 @@ export default function Hero() {
             fetchPriority="high"
             decoding="async"
             crossOrigin="anonymous"
+            width="1920"
+            height="1080"
             onError={(e) => {
               e.target.style.display = 'none';
             }}

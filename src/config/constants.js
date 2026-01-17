@@ -44,10 +44,10 @@ export const APP_CONFIG = {
   },
   images: {
     hero: {
-      desktop: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3',
-      tablet: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3',
-      mobile: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3',
-      default: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3',
+      desktop: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=75&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3',
+      tablet: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=75&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3',
+      mobile: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=75&w=800&auto=format&fit=crop&ixlib=rb-4.0.3',
+      default: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=75&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3',
       alt: 'Deliciosos completos y comida rápida',
     },
   },

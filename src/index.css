@@ -79,7 +79,10 @@ html.dark body {
 
 .hero-pattern {
   background-color: #D32F2F;
-  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAmeRTP0P8HWRMWhKexIIDj2Gfb5t7SpjWUYNCw2bAi0YptKgIjU-FtaimygBbgYM3kBw3jC1UHhnJ9orp23gFRM_XAX9h6gSkF5U2SRh3zgtgYGNqy0M72js9ZpQ0kh-yE96Bjg9cXuNWeivPlVaHHnLLHdf-w7JmuHhQMtT3gVpfSCbN5QicMtlSzfygDbxXNonwHdhVwO3uEZUnD7_-E5BZY7qLHWH7YYrbl1SqzpFHWWxwh30Q9dOYI0GyYsmr3HHkeU_KhNE0);
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px);
+  background-size: 40px 40px;
 }
 
 .text-shadow {
@@ -124,7 +127,6 @@ img {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optimización específica para imágenes del hero */
 .hero-pattern + picture img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;

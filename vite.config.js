@@ -13,10 +13,17 @@ export default defineConfig({
     cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'react-vendor';
+            }
+            if (id.includes('daisyui')) {
+              return 'ui-vendor';
+            }
+            return 'vendor';
+          }
         },
-        // Optimización: nombres de archivos más cortos para reducir tamaño
         chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
@@ -26,10 +33,15 @@ export default defineConfig({
           return 'assets/[name]-[hash][extname]';
         },
       },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
+      },
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500, 
     reportCompressedSize: true,
-    assetsInlineLimit: 4096, 
+    assetsInlineLimit: 4096,
   },
   
   server: {

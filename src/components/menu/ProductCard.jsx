@@ -113,6 +113,9 @@ export default function ProductCard({ product, category, onAddToCart, layout = '
           src={product.image}
           loading="lazy"
           decoding="async"
+          width="400"
+          height="300"
+          fetchPriority="low"
         />
         <div className="absolute top-4 right-4 bg-primary text-white font-bold px-3 py-1 rounded-full shadow-lg">
           {product.priceDisplay}

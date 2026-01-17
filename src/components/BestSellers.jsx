@@ -69,6 +69,9 @@ export default function BestSellers() {
                   src={product.image}
                   loading="lazy"
                   decoding="async"
+                  width="400"
+                  height="256"
+                  fetchPriority="low"
                 />
                 {product.badge && (
                   <div className={`absolute top-4 right-4 ${product.badgeColor} font-bold px-3 py-1 rounded-lg`}>
