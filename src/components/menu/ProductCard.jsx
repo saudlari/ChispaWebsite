@@ -5,7 +5,15 @@ export default function ProductCard({ product, category, onAddToCart, layout = '
 
   if (layout === 'horizontal') {
     return (
-      <div className="flex flex-col md:flex-row bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+      <div 
+        className="flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group dark-card"
+        style={{ 
+          backgroundColor: 'var(--card-bg)', 
+          borderColor: 'var(--border-color)',
+          borderWidth: '1px',
+          borderStyle: 'solid'
+        }}
+      >
         <div className="md:w-2/5 relative overflow-hidden h-64 md:h-auto">
           <img
             alt={product.name}
@@ -26,7 +34,7 @@ export default function ProductCard({ product, category, onAddToCart, layout = '
         <div className="p-8 flex-1 flex flex-col justify-between">
           <div>
             <h3 className="text-3xl font-bold text-slate-100 group-hover:text-primary transition-colors mb-4">{product.name}</h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-6">{product.description}</p>
+            <p className="mb-6 transition-colors duration-300" style={{ color: 'var(--text-muted)' }}>{product.description}</p>
           </div>
           <button 
             onClick={handleAddToCart}
