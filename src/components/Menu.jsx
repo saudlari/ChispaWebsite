@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import { hotDogs, burgers, sandwiches, chorrillanas, sides, drinks, breakfasts, kidsMenu } from '../data/products';
 import { mapProductToCart } from '../utils/productMapper';
 import { useToast } from '../hooks/useToast';
+import { menuCategories } from '../config/menuConfig';
 import Toast from './Toast';
 import MenuHeader from './menu/MenuHeader';
 import CategorySection from './menu/CategorySection';
@@ -55,100 +55,6 @@ export default function Menu({ showHeader = true, compactMode = false }) {
     navigate('/order');
   };
 
-  const categories = [
-    {
-      id: 'hot-dogs',
-      icon: 'hot_tub',
-      title: 'Completos',
-      products: hotDogs,
-      category: 'Completos',
-      categoryKey: 'hotDogs',
-      layout: 'vertical',
-      gridCols: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-      initialVisibleCount: 3,
-    },
-    {
-      id: 'burgers',
-      icon: 'lunch_dining',
-      title: 'BURGERS',
-      products: burgers,
-      category: 'Burgers',
-      categoryKey: 'burgers',
-      layout: 'horizontal',
-      gridCols: 'grid-cols-1 md:grid-cols-2',
-      initialVisibleCount: 2,
-    },
-    {
-      id: 'sandwiches',
-      icon: 'lunch_dining',
-      title: 'SANDWICHES',
-      products: sandwiches,
-      category: 'Sandwiches',
-      categoryKey: 'sandwiches',
-      layout: 'vertical',
-      gridCols: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-      initialVisibleCount: 3,
-    },
-    {
-      id: 'chorrillanas',
-      icon: 'dinner_dining',
-      title: 'CHORRILLANAS',
-      products: chorrillanas,
-      category: 'Chorrillanas',
-      categoryKey: 'chorrillanas',
-      layout: 'horizontal',
-      gridCols: 'grid-cols-1 md:grid-cols-2',
-      initialVisibleCount: 2,
-    },
-    {
-      id: 'breakfasts',
-      icon: 'breakfast_dining',
-      title: 'DESAYUNOS',
-      products: breakfasts,
-      category: 'Desayunos',
-      categoryKey: 'breakfasts',
-      layout: 'vertical',
-      gridCols: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-      initialVisibleCount: 3,
-    },
-    {
-      id: 'kids-menu',
-      icon: 'child_care',
-      title: 'MENÚ KIDS',
-      products: kidsMenu,
-      category: 'Menú Kids',
-      categoryKey: 'kidsMenu',
-      layout: 'vertical',
-      gridCols: 'grid-cols-1 md:grid-cols-3',
-      initialVisibleCount: 3,
-    },
-    {
-      id: 'fries',
-      icon: 'restaurant',
-      title: 'Complementos',
-      products: sides,
-      category: 'Sides',
-      categoryKey: 'sides',
-      layout: 'compact',
-      gridCols: 'grid-cols-1 md:grid-cols-3',
-      initialVisibleCount: 3,
-      gap: 'gap-6',
-      centered: true,
-    },
-    {
-      id: 'drinks',
-      icon: 'local_drink',
-      title: 'BEBIDAS',
-      products: drinks,
-      category: 'Bebidas',
-      categoryKey: 'drinks',
-      layout: 'icon',
-      gridCols: 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6',
-      initialVisibleCount: 6,
-      gap: 'gap-4',
-    },
-  ];
-
   return (
     <section className={`${compactMode ? 'py-8' : 'py-20'} transition-colors duration-300`} style={{ 
       background: compactMode ? 'transparent' : 'linear-gradient(to bottom, var(--features-bg), var(--bg-primary))'
@@ -156,7 +62,7 @@ export default function Menu({ showHeader = true, compactMode = false }) {
       {showHeader && <MenuHeader />}
 
       <main className="max-w-7xl mx-auto px-4 py-12">
-        {categories.map((categoryConfig) => (
+        {menuCategories.map((categoryConfig) => (
           <CategorySection
             key={categoryConfig.id}
             {...categoryConfig}
@@ -173,7 +79,6 @@ export default function Menu({ showHeader = true, compactMode = false }) {
             <button
               onClick={() => {
                 expandAllCategories();
-                // Scroll suave hacia arriba después de expandir
                 setTimeout(() => {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }, 100);
