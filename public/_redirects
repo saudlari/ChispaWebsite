@@ -1,3 +1,0 @@
-# Redirect todas las rutas a index.html para SPA (excepto archivos estáticos)
-/*    /index.html   200
-
